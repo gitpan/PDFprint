@@ -1,3 +1,8 @@
+03/29/98 Version 2.0
+Added recursive option
+Added support for pdftops and pdftotext tools
+Remade documentation
+
 03/22/98 Version 1.2
 Added configuration file and configure option
 

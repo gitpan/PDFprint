@@ -3,28 +3,30 @@
 #
 # pdfprint -- a perl script to print PDF files,
 #
-# by Fabrizio Pivari <pivari@geocities.com> 22 March 1998
+# by Fabrizio Pivari <pivari@geocities.com> 29 March 1998
 #
 # Copy, use, and redistribute freely, but don't take my name off it and
 # clearly mark an altered version.  Fixes and enhancements cheerfully 
 # accepted.
 #
-# This is version 1.2.
+# This is version 2.0.
 #
 use strict;
 use Getopt::Long;
 
-my $version="1.2";
+my $version="2.0";
 my $configure="pdfprint.cfg";
+my $recursive="";
 my $verbose="";
 my $help="";
 my @elem; my %option; my $elem="";
 
 do GetOptions("configure=s" => \$configure,
+              "recursive=s" => \$recursive,
               "help"        => \$help,
               "verbose"     => \$verbose) || printusage() ;
-@elem=("pdf2ps","print");
-%option=(pdf2ps             => 'pdftops',
+@elem=("converter","print");
+%option=(converter             => 'pdftops',
          print              => 'lpr');
 
 $help and printusage();
@@ -38,18 +40,24 @@ while (<CNF>) {
   }
 close(CNF);
 
+sub wanted {
+    push @ARGV,$File::Find::name;
+  }
+
+if ($recursive) { 
+  find (\&wanted,"$recursive");
+  }
+
 my @args;
 my $x=""; my $file="";
 if (@ARGV) {
   foreach $x (@ARGV) {
     if ($x=~/\.pdf$/i) {
       $file="printpdf$$.ps";
-      $verbose and print "Using pdf2ps tool with $x file\n";
-      @args=("$option{'pdf2ps'}","$x","$file");
-      system(@args) == 0 or die "system @args failed: $?";
+      $verbose and print "Using converter tool with $x file\n";
+      `$option{'converter'} $x $file`;
       $verbose and print "Printing the $x file\n";
-      @args=("$option{'print'}","$file");
-      system(@args) == 0 or die "system @args failed: $?";
+      `$option{'print'} $file`;
       unlink $file;
       } else {print "Warning: the extension of the file isn't .pdf or .PDF\n";}
     }
@@ -65,7 +73,8 @@ usage:
 where options include:
     -help                        print out this message
     -verbose                     verbose
-    -configure file              defult pdfprint.cfg
+    -recursive directory         scan recursively the directory
+    -configure file              default pdfprint.cfg
 
 files:
     with files you can use metacharacters and relative and absolute path name
@@ -73,6 +82,7 @@ files:
 example:
     pdfprint *.pdf
     pdfprint -v -c tests/test.cfg */*.pdf
+    pdfprint -r pdfdocs
 
 If you want to know more about this tool, you might want
 to read the docs. They came together with pdfprint!

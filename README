@@ -1,27 +1,18 @@
-PDFprint is a PERL script to print PDF files
-It requires PERL 5.xxx and the script pdf2ps of Ghostscript 5.xx distribution
-(http://www.cs.wisc.edu/~ghost/).
+At the moment, if you want to print a PDF file you need a tool that converts it
+in a PostScript file (printer with PostScript version 3 will accept PDF format
+directly). Usually, the tool is a reader so you have to visualize the PDF file,
+then you can convert it in a PostScript file and send the PostScript file to
+the printer.
+How can you print the first page of all your PDF files in your archive?
+With PDFprint you can solve this problem.
+PDFprint is a very flexible script. It requires PERL 5.xxx and the script pdf2ps
+of Ghostscript 5.xx distribution (http://www.cs.wisc.edu/~ghost/) or better
+pdftops (pdftotext if you don't have a PostScript printer) included in xpdf tool
+(http://www.aimnet.com/~derekn/xpdf/).
 
-
-This is the sintax
-
-usage:
-        pdfprint [-options ...] files
-
-where options include:
-    -help                        print out this message
-    -verbose                     verbose
-    -configure file              defult pdfprint.cfg
-
-files:
-    with files you can use metacharacters and relative and absolute path name
-    
-example:
-    pdfprint *.pdf
-    pdfprint -v -c tests/test.cfg */*.pdf
-
-If you want to know more about this tool, you might want
-to read the docs. They came together with pdfprint!
+If you use pdftotext with pg or more you can use PDFprint like a PDF ascii
+reader. You can ask to this question: how can I read the first page of all
+my PDF files in my archive?
 
 Home: http://www.geocities.com/CapeCanaveral/Lab/3469/pdfprint.html
 

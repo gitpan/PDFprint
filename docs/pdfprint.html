@@ -8,64 +8,137 @@ designed by Fabrizio Pivari (Pivari@geocities.com) on 03/08/98-->
 </HEAD>
 
 <BODY BGCOLOR="#ffffff">
-<H1>PDFprint</H1>
 <TABLE>
 <TR>
 <TD  VALIGN=top ALIGN=left>
-<H2>by <A HREF="mailto:Pivari@geocities.com">Fabrizio Pivari</A></H2>
-<H4>version 1.2 1998/03/22</H4>
+<TABLE WIDTH=100% CELLSPACING=0 CELLPADDING=4 BGCOLOR=silver><TR><TD>
+<FONT SIZE=+3><B>PDFprint</B></FONT>
+</TD></TR></TABLE>
+<H3>Version 2.0 29th March 1998</H3>
+<TABLE CELLSPACING=0 CELLPADDING=4><TR>
+  <TD VALIGN=top>Programming by</TD>
+  <TD>
+  <A HREF="http://www.geocities.com/CapeCanaveral/Lab/3469/">Fabrizio Pivari</A>
+  <A HREF="mailto:pivari@geocities.com">&lt;pivari@geocities.com&gt;</A>
+  </TD></TR><TR>
+  <TD VALIGN=top>Documentation by</TD>
+  <TD>
+  <A HREF="http://www.geocities.com/CapeCanaveral/Lab/3469/">Fabrizio Pivari</A>
+  <A HREF="mailto:pivari@geocities.com">&lt;pivari@geocities.com&gt;</A>
+  </TD></TR>
+</TABLE>
 
-PDFprint is a PERL script to print PDF files, it requires PERL 5.xxx and
-the script pdf2ps of <A HREF="http://www.cs.wisc.edu/~ghost/">Ghostscript 5.xx</A>
-distribution.
-You have to modify these variables, in the configuration file
-(default pdfprint.cfg), to match your host configuration<BR>
-<PRE>
-pdf2ps : pdf2ps
-print : lpr
-</PRE>
-for example if you prefer absolute path and your print command is lp
-<PRE>
-pdf2ps : /usr/local/bin/pdf2ps
-print : /bin/lp
-</PRE>
+<TABLE WIDTH=100% CELLSPACING=0 CELLPADDING=4 BGCOLOR=silver><TR><TD>
+<FONT SIZE=+1>What is PDFprint</FONT>
+</TD></TR></TABLE>
+PDFprint is a very flexible tool to print PDF files from different directories
+and recursively from every subdirectories (in the future, form FTP and HTTP 
+sites) to a printer or to the monitor, in PostScript format or in text format.
 </TD>
 <TD VALIGN=top ALIGN=center>
-<A HREF="http://www.geocities.com/CapeCanaveral/Hangar/4794/"><IMG SRC="anfacebig.gif" ALT="ANFACE Software" BORDER=0 WIDTH=130 HEIGHT=37></A><BR>
+	<A HREF="http://www.geocities.com/CapeCanaveral/Hangar/4794/"><IMG SRC="anfacebig.gif" ALT="ANFACE Software" BORDER=0 WIDTH=130 HEIGHT=37></A><BR>
 <A HREF="http://www.geocities.com/CapeCanaveral/Hangar/4794/"><IMG SRC="anfacelogo.gif" ALT="ANFACE Software logo" BORDER=0 WIDTH=213 HEIGHT=164></A>
 </TD>
 </TR>
 </TABLE>
+<TABLE WIDTH=100% CELLSPACING=0 CELLPADDING=4 BGCOLOR=silver><TR><TD>
+<FONT SIZE=+1>Viewer method</FONT>
+</TD></TR></TABLE>
+At the moment, if you want to print a PDF file you need a tool that converts it
+in PostScript format (level 3 PostScript printers will accept PDF format
+directly). Usually, the tool is a reader, so you have to visualize the PDF file,
+then the tool converts it in a PostScript file and sends the PostScript file to
+the printer.<BR>
+How can you print the first page of all your PDF files in your archive?<BR>
+How can you read the first page of all your PDF files in your archive?<BR>
+With PDFprint you can solve these problems.
+<TABLE WIDTH=100% CELLSPACING=0 CELLPADDING=4 BGCOLOR=silver><TR><TD>
+<FONT SIZE=+1>Getting and Installing PDFprint</FONT>
+</TD></TR></TABLE>
+<OL>
+  <LI><P>Get the latest Version of PDFprint from:<BR>
+      <A HREF="http://www.geocities.com/CapeCanaveral/Lab/3469/pdfprint.html">
+      http://www.geocities.com/CapeCanaveral/Lab/3469/pdfprint.html</A>
+      or CPAN</P>
+  </LI>
 
-This is the sintax
+  <LI><P>Get and compile the xpdf, inside you can find <B>pdftops</B> and
+      <B>pdftotext</B> tools:<BR>
+      <A HREF=" http://www.aimnet.com/~derekn/xpdf/">
+      http://www.aimnet.com/~derekn/xpdf/</A><BR> 
+      If you have just compiled <A HREF="http://www.cs.wisc.edu/~ghost/">
+      Ghostscript 5.xx</A>, you can use <B>pdf2ps</B> script</P>
+  </LI>
+
+  <LI><P>Make sure you have Perl Version 5.003 or later on your
+      system:<BR>
+      <A HREF="http://www.perl.com/perl/info/software.html">
+      http://www.perl.com/perl/info/software.html</A></P>
+  </LI>
+  
+  <LI>
+      <P>Create your personal pdfprint.cfg file.<BR>
+      You can change the value of <B>converter</B> and <B>print</B>
+      variables.<BR>
+      With converter you can use <I>pdf2ps</I>, <I>pdftops</I> to convert
+      PDF files, to PostScript files, <I>pdftotext</I> to convert PDF files
+      to texts.<BR>
+      In <I>pdftops</I> and <I>pdftotext</I> you can specify the pages to
+      convert with the options
+      <UL>
+         <LI><I>-f number</I> the first page to convert</LI>
+         <LI><I>-l number</I> the last page to convert</LI>
+      </UL>
+      In <I>pdftops</I> you can specify to convert to Level 1 PostScript
+      (default is Level 2 PostScript) with <I>-level1</I> option.<BR>
+      In <I>pdftotext</I>  you can specify to convert to 7-bit ASCII
+      (default is 8-bit ISO Latin-1) with <I>-ascii7</I> option.<BR>
+      With printer you can use printing commands like <I>lpr</I> and <I>lp</I>
+      or monitor commands like <I>more</I> and <I>pg</I>.
+      Every PDF file, you have selected, is conveted with the selected converter
+      tool, then printed with the selected printer tool.
+      </P>
+  </LI>
+
+  <LI>
+      Try to start PDFprint. Type <B>./pdfprint ./tests/pdfprint.pdf</B> on the
+      command line
+  </LI>
+</OL>
+<TABLE WIDTH=100% CELLSPACING=0 CELLPADDING=4 BGCOLOR=silver><TR><TD>
+<FONT SIZE=+1>Syntax</FONT>
+</TD></TR></TABLE>
+<BR>
+
+<B>pdfprint [-options] files</B>
 
 <PRE>
-usage:
-        pdfprint [-options ...] files
-
 where options include:
     -help                        print out this message
     -verbose                     verbose
+    -recursive directory         scan recursively the directory
     -configure file              default pdfprint.cfg
 
 files:
     with files you can use metacharacters and relative and absolute path name
+    only files with .pdf and .PDF extensions are accepted
     
 example:
     pdfprint *.pdf
     pdfprint -v -c tests/test.cfg */*.pdf
+    pdfprint -r pdfdocs
 </PRE>
 
+<TABLE WIDTH=100% CELLSPACING=0 CELLPADDING=4 BGCOLOR=silver><TR><TD>
+<FONT SIZE=+1>What's new in this version</FONT>
+</TD></TR></TABLE>
 <UL>
-What's new with version 1.2:
-<LI>Added configuration file and configure option</LI>
+<LI>Added recursive option</LI>
+<LI>Added support for pdftops and pdftotext included in
+<A HREF="http://www.aimnet.com/~derekn/xpdf/">xpdf</A> tool</LI>
+<LI>Remade documentation</LI>
 </UL>
-<A HREF="pdfprintH.html">History file</A><P>
-
-<A HREF="PDFprint.tar.gz">Source Code</A><BR>
-You can also find the source code at
-<A HREF="http://www.perl.com/CPAN/authors/Fabrizio_Pivari">
-CPAN authors/Fabrizio_Pivari/</A><P>
+Here you can find an exhaustive <A HREF="pdfprintH.html">history file</A><P>
 
 </BODY>
 </HTML>
