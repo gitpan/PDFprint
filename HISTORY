@@ -1,3 +1,18 @@
+07/11/98 version 3.0
+HTTP support with libwww
+http://www.sn.no/libwww-perl/
+In configuration file you can customize your e-mail address like password
+for anonymous ftp
+FTP support with libnet module
+http://www.connect.net/gbarr/libnet
+
+06/27/98 version 2.6
+Added dupport for poster
+New official location for PDFprint
+http://www.geocities.com/CapeCanaveral/Hangar/4794/pdfprint.html
+in the ANFACE Software site.
+
+
 05/10/98 Version 2.5
 Added support for htmldoc
 

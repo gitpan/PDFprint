@@ -14,7 +14,7 @@ designed by Fabrizio Pivari (Pivari@geocities.com) on 03/08/98-->
 <TABLE WIDTH=100% CELLSPACING=0 CELLPADDING=4 BGCOLOR=silver><TR><TD>
 <FONT SIZE=+3><B>PDFprint</B></FONT>
 </TD></TR></TABLE>
-<H3>Version 2.6 27th June 1998</H3>
+<H3>Version 3.0 11th July 1998</H3>
 <TABLE CELLSPACING=0 CELLPADDING=4><TR>
   <TD VALIGN=top>Developing by</TD>
   <TD>
@@ -27,8 +27,8 @@ designed by Fabrizio Pivari (Pivari@geocities.com) on 03/08/98-->
 <FONT SIZE=+1>What is PDFprint</FONT>
 </TD></TR></TABLE><BR>
 PDFprint is a very flexible tool to print PDF files (or parts of them) from
-different directories and recursively from every subdirectories (in the future,
-from FTP and HTTP sites) to a printer or to the monitor, in PostScript format
+different directories and recursively from every subdirectories,
+from FTP and HTTP sites, to a printer or to the monitor, in PostScript format
 or in text format.
 </TD>
 <TD VALIGN=top ALIGN=center>
@@ -38,12 +38,12 @@ or in text format.
 </TR>
 </TABLE>
 PDFprint can also help you to print PostScript files (or parts of them) from
-different directories and recursively from every subdirectories (in the future,
-from FTP and HTTP sites) to a printer or to the monitor, in PostScript format or
+different directories and recursively from every subdirectories,
+from FTP and HTTP sites, to a printer or to the monitor, in PostScript format or
 in text format.<BR>
 PDFprint can also help you to print HTML files (or parts of them) from different
-directories and recursively from every subdirectories (in the future, from FTP
-and HTTP sites) to a printer or to the monitor, in PostScript format or in text
+directories and recursively from every subdirectories, from FTP
+and HTTP sites, to a printer or to the monitor, in PostScript format or in text
 format.<P>
 </TD>
 <TABLE WIDTH=100% CELLSPACING=0 CELLPADDING=4 BGCOLOR=silver><TR><TD>
@@ -118,12 +118,26 @@ With PDFprint you can solve these problems.<P>
       http://www.perl.com/perl/info/software.html</A></P>
   </LI>
   
+  <LI><P>Get the latest Version of libnet module from:<BR>
+      <A HREF="http://www.connect.net/gbarr/libnet/">
+      http://www.connect.net/gbarr/libnet/</A>
+      or CPAN</P>
+  </LI>
+
+  <LI><P>Get the latest Version of libwww module from:<BR>
+      <A HREF="http://www.sn.no/libwww-perl/">
+      http://www.sn.no/libwww-perl/</A>
+      or CPAN</P>
+  </LI>
+
   <LI>
       <P>Create your personal pdfprint.cfg file.<BR>
-      You can change the value of <B>tmpdir</B>, <B>converter</B>, 
-      <B>filter</B> and <B>print</B> variables.<BR>
+      You can change the value of <B>tmpdir</B>, <B>YOUR_email</B>,
+      <B>converter</B>, <B>filter</B> and <B>print</B> variables.<BR>
       With tmpdir you can set the directory for the temporary files.
       You can use relative and absolute path. Default is /tmp.<BR>
+      With YOUR_email you have to customize your e-mail address like password
+      for anonymous ftp<BR>
       With converter you can use <I>pdf2ps</I>, <I>pdftops</I> or
       <I>acroread -toPostScript</I> to convert
       PDF files to PostScript files, <I>pdftotext</I> to convert PDF files
@@ -149,7 +163,7 @@ With PDFprint you can solve these problems.<P>
          <LI><I>-t ps1</I> to force Level 1 PostScript</LI>
          <LI><I>-t ps2</I> to force Level 2 PostScript</LI>
          <LI><I>-t pdf</I> to force PDF</LI>
-         <LI><I>--size [sizepage]</I> to specifies the oputput page size.
+         <LI><I>--size [sizepage]</I> to specifies the output page size.
          You can use these sizepage: letter, a4, universal, WIDTHxHEIGHT,
          WIDTHxHEIGHTin, WIDTHxHEIGHTcm, WIDTHxHEIGHTmm</LI>
       </UL>
@@ -202,7 +216,7 @@ With PDFprint you can solve these problems.<P>
 </TD></TR></TABLE>
 <BR>
 
-<B>pdfprint [-options] files</B>
+<B>pdfprint [-options] list</B>
 
 <PRE>
 where options include:
@@ -212,9 +226,10 @@ where options include:
     -match     files             match different files ex. *.pdf, a?.*
     -configure file              default pdfprint.cfg
 
-files:
-    with files you can use metacharacters and relative and absolute path name
-    only files with .pdf, .PDF or .ps, .PS extensions are accepted
+list:
+    with list you can use metacharacters and relative and absolute path name
+    and ftp URL like ftp://ftp.host.com/directory/file
+    and http URL like http://www.host.com/directory/file
     
 example:
     pdfprint *.pdf
@@ -226,21 +241,19 @@ example:
 <FONT SIZE=+1>What's new in this version</FONT>
 </TD></TR></TABLE>
 <UL>
-<LI>Added support for <A HREF="ftp://ftp.es.ele.tue.nl/pub/poster/">poster</A>
-</LI>
-<LI>New official location for PDFprint
-<A HREF="http://www.geocities.com/CapeCanaveral/Hangar/4794/pdfprint.html">
-http://www.geocities.com/CapeCanaveral/Hangar/4794/pdfprint.html</A>
-in the <A HREF="http://www.geocities.com/CapeCanaveral/Hangar/4794/">
-ANFACE Software site</A>.
-</LI>
+<LI>FTP support with <A HREF="http://www.connect.net/gbarr/libnet">libnet module</A></LI>
+<LI>In configuration file you can customize your e-mail address like password
+for anonymous ftp</LI>
+<LI>HTTP support with <A HREF="http://www.sn.no/libwww-perl/">libwww</A></LI>
 </UL>
 Here you can find an exhaustive <A HREF="pdfprintH.html">history file</A><P>
 
 <TABLE WIDTH=100% CELLSPACING=0 CELLPADDING=4 BGCOLOR=silver><TR><TD>
 <FONT SIZE=+1>Source</FONT>
 </TD></TR></TABLE>
-<A HREF="PDFprint.tar.gz">Source Code: the last release 2.6</A><BR>
+<A HREF="PDFprint.tar.gz">Source Code: the last release 3.0</A><BR>
+<A HREF="PDFprint-2.6.tar.gz">Source Code: the last release without libwww-per
+l-5 and libnet modules 2.6</A><BR>
 You can also find the source code at
 <A HREF="http://www.perl.org/CPAN/authors/Fabrizio_Pivari">
 CPAN authors/Fabrizio_Pivari/</A><P>

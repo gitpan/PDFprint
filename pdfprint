@@ -3,18 +3,23 @@
 #
 # pdfprint -- a perl script to print PDF files,
 #
-# by ANFACE Software <anface@geocities.com> 10 May 1998
+# by ANFACE Software <anface@geocities.com> 11 July 1998
 #
 # Copy, use, and redistribute freely, but don't take my name off it and
 # clearly mark an altered version.  Fixes and enhancements cheerfully 
 # accepted.
 #
-# This is version 2.6.
+# This is version 3.0.
 #
 use strict;
 use Getopt::Long;
+# libnet http://www.connect.net/gbarr/libnet/
+use Net::FTP;
+# libwww-perl-5 http://www.sn.no/libwww-perl/
+use LWP::UserAgent;
 
-my $version="2.6";
+
+my $version="3.0";
 my $configure="pdfprint.cfg";
 my $match="";
 my $recursive="";
@@ -27,13 +32,15 @@ do GetOptions("configure=s" => \$configure,
               "match=s"     => \$match,
               "help"        => \$help,
               "verbose"     => \$verbose) || printusage() ;
-@elem=("tmpdir","converter","filter","print");
+@elem=("tmpdir","YOUR_email","converter","filter","print");
 %option=(tmpdir             => '/tmp',
+         YOUR_email         => 'yourname@yourhost.com',
          converter          => 'pdftops',
          filter             => '',
          print              => 'lpr');
 
 $help and printusage();
+($verbose && $configure) and print "I'm using $configure like configuration file\n";                                                       
 
 open (CNF, "$configure") || die "pdfprint: couldn't open configuration file $configure\n";
 while (<CNF>) {
@@ -66,9 +73,40 @@ if ($recursive) {
 
 my @args;
 my $x=""; my $file=""; my $file1="";
+my $url; my $urlfile; my @URL; my $directory;
 if (@ARGV) {
   foreach $x (@ARGV) {
     if ($x=~/\.pdf$/i || $x=~/\.ps$/i || $x=~/\.html$/i || $x=~/\.htm$/i) {
+# FTP URL
+      if($x =~ /ftp:\/\/(.*)/) {
+        @URL = split (/\//,$1);
+        if($option{'YOUR_email'} eq "yourname\@yourhost.com") {
+          print <<EOF;
+WARNING: you are using yourname\@yourhost.com like password for anonymous ftp.
+Change it in the configuration file with your e-mail address!
+EOF
+          }
+        $directory.="/";
+        $directory.=join ("/",@URL[1..($#URL-1)]);
+        my $ftp = Net::FTP->new("$URL[$0]");
+        $ftp->login("anonymous",$option{'YOUR_email'});
+        $ftp->cwd("$directory");
+        $ftp->get("$URL[$#URL]");
+        $ftp->quit;
+        $url=$x;
+        $x=$URL[$#URL];
+        $urlfile=1;
+        }
+# HTTP URL
+      if($x =~ /http:\/\/(.*)/) {
+        @URL = split (/\//,$1);
+        my $http = new LWP::UserAgent;
+        my $req = new HTTP::Request 'GET', "$x";
+        my $res = $http->request($req,"$URL[$#URL]");
+        $url=$x;
+        $x=$URL[$#URL];
+        $urlfile=1;
+        }
       $file=$option{'tmpdir'}."/printpdf$$.tmp";
       $file1=$option{'tmpdir'}."/print1pdf$$.tmp";
       $verbose and print "Using the converter tool $option{'converter'} with $x file\n";
@@ -97,7 +135,7 @@ sub printusage {
     print <<USAGEDESC;
 
 usage:
-        pdfprint [-options ...] files
+        pdfprint [-options ...] list
 
 where options include:
     -help                        print out this message
@@ -106,8 +144,10 @@ where options include:
     -match     files             match different files ex. *.pdf, a?.*
     -configure file              default pdfprint.cfg
 
-files:
-    with files you can use metacharacters and relative and absolute path name
+list:
+    with list you can use metacharacters and relative and absolute path name
+    and ftp URL like ftp://ftp.host.com/directory/file
+    and http URL like http://www.host.com/directory/file
     
 example:
     pdfprint *.pdf
