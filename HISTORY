@@ -1,6 +1,10 @@
+04/05/98 Version 2.1
+Added match option (an extension of recursive option)
+Added support for acroread tool (Acrobat Reader on Unix platform)
+
 03/29/98 Version 2.0
 Added recursive option
-Added support for pdftops and pdftotext tools
+Added support for pdftops pdftotext tools
 Remade documentation
 
 03/22/98 Version 1.2

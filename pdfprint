@@ -3,19 +3,20 @@
 #
 # pdfprint -- a perl script to print PDF files,
 #
-# by Fabrizio Pivari <pivari@geocities.com> 29 March 1998
+# by Fabrizio Pivari <pivari@geocities.com> 5 April 1998
 #
 # Copy, use, and redistribute freely, but don't take my name off it and
 # clearly mark an altered version.  Fixes and enhancements cheerfully 
 # accepted.
 #
-# This is version 2.0.
+# This is version 2.1.
 #
 use strict;
 use Getopt::Long;
 
-my $version="2.0";
+my $version="2.1";
 my $configure="pdfprint.cfg";
+my $match="";
 my $recursive="";
 my $verbose="";
 my $help="";
@@ -23,6 +24,7 @@ my @elem; my %option; my $elem="";
 
 do GetOptions("configure=s" => \$configure,
               "recursive=s" => \$recursive,
+              "match=s"     => \$match,
               "help"        => \$help,
               "verbose"     => \$verbose) || printusage() ;
 @elem=("converter","print");
@@ -41,12 +43,25 @@ while (<CNF>) {
 close(CNF);
 
 sub wanted {
+  if ($File::Find::name=~/$match/) {
     push @ARGV,$File::Find::name;
+    }
   }
 
+
+if ($match && !$recursive) {
+   print "You can use -match option only with -recursive option\n";
+   exit;
+   }
+
 if ($recursive) { 
+  $match=~s/\./\\./g;
+  $match=~s/\*/.*/g;
+  $match=~s/\?/./g;
+  $match=~s/$/\$/;
   find (\&wanted,"$recursive");
   }
+
 
 my @args;
 my $x=""; my $file="";
@@ -74,6 +89,7 @@ where options include:
     -help                        print out this message
     -verbose                     verbose
     -recursive directory         scan recursively the directory
+    -match     files             match different files ex. *.pdf, a?.*
     -configure file              default pdfprint.cfg
 
 files:
@@ -82,7 +98,7 @@ files:
 example:
     pdfprint *.pdf
     pdfprint -v -c tests/test.cfg */*.pdf
-    pdfprint -r pdfdocs
+    pdfprint -m a* -r pdfdocs
 
 If you want to know more about this tool, you might want
 to read the docs. They came together with pdfprint!
