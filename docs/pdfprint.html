@@ -13,7 +13,7 @@ designed by Fabrizio Pivari (Pivari@geocities.com) on 03/08/98-->
 <TR>
 <TD  VALIGN=top ALIGN=left>
 <H2>by <A HREF="mailto:Pivari@geocities.com">Fabrizio Pivari</A></H2>
-<H4>version 1.0 1998/03/08</H4>
+<H4>version 1.1 1998/03/15</H4>
 
 PDFprint is a PERL script to print PDF files, it requires PERL 5.xxx and
 the script pdf2ps of <A HREF="http://www.cs.wisc.edu/~ghost/">Ghostscript 5.xx</A>
@@ -31,8 +31,8 @@ my $print="/bin/lp";
 </PRE>
 </TD>
 <TD VALIGN=top ALIGN=center>
-<A HREF="http://www.geocities.com/CapeCanaveral/Hangar/4794/"><IMG SRC="anfacebig.gif" BORDER=0 WIDTH=130 HEIGHT=37></A><BR>
-<A HREF="http://www.geocities.com/CapeCanaveral/Hangar/4794/"><IMG SRC="anfacelogo.gif" BORDER=0 WIDTH=213 HEIGHT=164></A>
+<A HREF="http://www.geocities.com/CapeCanaveral/Hangar/4794/"><IMG SRC="anfacebig.gif" ALT="ANFACE Software" BORDER=0 WIDTH=130 HEIGHT=37></A><BR>
+<A HREF="http://www.geocities.com/CapeCanaveral/Hangar/4794/"><IMG SRC="anfacelogo.gif" ALT="ANFACE Software logo" BORDER=0 WIDTH=213 HEIGHT=164></A>
 </TD>
 </TR>
 </TABLE>
@@ -54,6 +54,12 @@ example:
     pdfprint *.pdf
     pdfprint -v */*.pdf
 </PRE>
+
+<UL>
+What's new with version 1.1:
+<LI>Added a control on file extension: only .pdf and .PDF extensions are accepted</LI>
+</UL>
+<A HREF="pdfprintH.html">History file</A><P>
 
 <A HREF="PDFprint.tar.gz">Source Code</A><BR>
 You can also find the source code at

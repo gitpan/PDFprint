@@ -3,13 +3,13 @@
 #
 # pdfprint -- a perl script to print PDF files,
 #
-# by Fabrizio Pivari <pivari@geocities.com> 1 March 1998
+# by Fabrizio Pivari <pivari@geocities.com> 15 March 1998
 #
 # Copy, use, and redistribute freely, but don't take my name off it and
 # clearly mark an altered version.  Fixes and enhancements cheerfully 
 # accepted.
 #
-# This is version 1.0.
+# This is version 1.1.
 #
 use strict;
 use Getopt::Long;
@@ -20,7 +20,7 @@ my $pdf2ps="pdf2ps";
 my $print="lpr";
 
 
-my $version="1.0";
+my $version="1.1";
 my $verbose="";
 my $help="";
 
@@ -33,14 +33,16 @@ my @args;
 my $x=""; my $file="";
 if (@ARGV) {
   foreach $x (@ARGV) {
-    $file="printpdf$$.ps";
-    $verbose and print "Using pdf2ps tool with $x file\n";
-    @args=("$pdf2ps","$x","$file");
-    system(@args) == 0 or die "system @args failed: $?";
-    $verbose and print "Printing the $x file\n";
-    @args=("$print","$file");
-    system(@args) == 0 or die "system @args failed: $?";
-    unlink $file;
+    if ($x=~/\.pdf$/i {
+      $file="printpdf$$.ps";
+      $verbose and print "Using pdf2ps tool with $x file\n";
+      @args=("$pdf2ps","$x","$file");
+      system(@args) == 0 or die "system @args failed: $?";
+      $verbose and print "Printing the $x file\n";
+      @args=("$print","$file");
+      system(@args) == 0 or die "system @args failed: $?";
+      unlink $file;
+      } else {print "Warning: the extension of the file isn't .pdf or .PDF\n";}
     }
   }
 else {printusage();}
