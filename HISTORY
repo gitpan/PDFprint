@@ -1,3 +1,13 @@
+04/19/98 Version 2.3
+Added tmpdir variable (Christopher Blencowe <cbb@CONVEX.phazc.uni-heidelberg.de>
+idea)
+
+04/13/98 Version 2.2
+Bugfix: now pdfprint use system function to utilize the external tools
+Added support for ps2ascii (script inside ghostscript) and
+psselect (tool inside psutils)
+Added original external tools documentation
+
 04/05/98 Version 2.1
 Added match option (an extension of recursive option)
 Added support for acroread tool (Acrobat Reader on Unix platform)

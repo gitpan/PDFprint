@@ -1,0 +1,9 @@
+Christopher Blencowe <cbb@CONVEX.phazc.uni-heidelberg.de> wrote me:
+Your test-pdf file will create strange ps output, which probably is not your
+fault, but ghostscript's pdf -> ps mechanism (it displays fine): gs510 on
+linux-debian "Missing font T2"
+I get two big black circles (one filled, one empty) which seems to be a product
+of pdf2ps of the ghostscript output, which you are using in pdfprint.
+
+To solve this problem now the test-pdf file is generated from PS file with
+ps2pdf tool of GS distribution.

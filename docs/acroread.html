@@ -1,0 +1,48 @@
+<HTML>
+<HEAD>
+<TITLE>acroread -help documentation</TITLE>
+</HEAD>
+<BODY BGCOLOR="#ffffff">
+<H1>acroread -help documentation</H1>
+<PRE>
+Usage: /usr/local/bin/acroread [options] [list of files]
+
+Options:
+    -display <display>
+        This option specifies the host and display to use.
+    -geometry [<width>x<height>][{+|-}<x offset>{+|-}<y offset>]
+        Size and/or location of the document windows.
+    -help
+        Prints the common command-line options.
+    -helpall
+        Prints out all command-line options.
+    -iconic
+        Launches in an iconic state on the desktop.
+    -toPostScript [options] pdf_file ... [ps_dir]
+    -toPostScript [options] -pairs pdf_file_1 ps_file_1 ...
+    -toPostScript [options]
+        Converts the given pdf_files to PostScript.
+
+        In the first form, if the last file specified is a directory,
+        then all preceding files will be converted to PostScript
+        and the generated PostScript files will be placed into ps_dir.
+        If a directory is not specified, then the PostScript files
+        will be placed in the same directory as the original file.
+
+        In the second form, the file list contains pairs, each
+        consisting of a PDF filename and a corresponding PostScript
+        filename.
+
+        The third form specifies a filter, reading a PDF file from
+        standard input and writing the PostScript file to standard
+        output.
+
+        The following are valid options for the conversion of PDF to
+        PostScript:
+
+        -level2 - emit Level 2 PostScript (default is Level 1 PostScript)
+    -xrm <X resource specification>
+        Standard X Window System resource specification on command line.
+</PRE>
+</BODY>
+</HTML>

@@ -3,18 +3,18 @@
 #
 # pdfprint -- a perl script to print PDF files,
 #
-# by Fabrizio Pivari <pivari@geocities.com> 5 April 1998
+# by Fabrizio Pivari <pivari@geocities.com> 19 April 1998
 #
 # Copy, use, and redistribute freely, but don't take my name off it and
 # clearly mark an altered version.  Fixes and enhancements cheerfully 
 # accepted.
 #
-# This is version 2.1.
+# This is version 2.3.
 #
 use strict;
 use Getopt::Long;
 
-my $version="2.1";
+my $version="2.3";
 my $configure="pdfprint.cfg";
 my $match="";
 my $recursive="";
@@ -27,8 +27,9 @@ do GetOptions("configure=s" => \$configure,
               "match=s"     => \$match,
               "help"        => \$help,
               "verbose"     => \$verbose) || printusage() ;
-@elem=("converter","print");
-%option=(converter             => 'pdftops',
+@elem=("tmpdir","converter","print");
+%option=(converter          => 'pdftops',
+         tmpdir             => '/tmp',
          print              => 'lpr');
 
 $help and printusage();
@@ -67,14 +68,14 @@ my @args;
 my $x=""; my $file="";
 if (@ARGV) {
   foreach $x (@ARGV) {
-    if ($x=~/\.pdf$/i) {
-      $file="printpdf$$.ps";
-      $verbose and print "Using converter tool with $x file\n";
-      `$option{'converter'} $x $file`;
-      $verbose and print "Printing the $x file\n";
-      `$option{'print'} $file`;
+    if ($x=~/\.pdf$/i || $x=~/\.ps$/i) {
+      $file=$option{'tmpdir'}."/printpdf$$.ps";
+      $verbose and print "Using the converter tool $option{'converter'} with $x file\n";
+      system "$option{'converter'} $x $file";
+      $verbose and print "Using the printer tool $option{'print'} with $x file\n";
+      system "$option{'print'} $file";
       unlink $file;
-      } else {print "Warning: the extension of the file isn't .pdf or .PDF\n";}
+      } else {print "Warning: the extension of the file isn't .pdf or .PDF, .ps or .PS\n";}
     }
   }
 else {printusage();}
