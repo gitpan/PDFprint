@@ -1,17 +1,17 @@
-PDFprint is a very flexible tool to print PDF files from different directories
-and recursively from every subdirectories (in the future, form FTP and
-HTTP sites) to a printer or to the monitor, in PostScript format or in text
-format. 
+PDFprint is a very flexible tool to print PDF files (or parts of them) from
+different directories and recursively from every subdirectories (in the
+future, from FTP and HTTP sites) to a printer or to the monitor, in
+PostScript format or in text format. 
 
-At the moment, if you want to print a PDF file you need a tool that converts it
-in PostScript format (level 3 PostScript printers will accept PDF format
-directly). Usually, the tool is a reader, so you have to visualize the PDF file,
-then the tool converts it in a PostScript file and sends the PostScript file to
-the printer.
-How can you print the first page of every PDF file, starting with "a" letter, in
-your archive?
-How can you read the first page of every PDF file in your archive?
-With PDFprint you can solve these problems. 
+PDFprint can also help you to print PostScript files (or parts of them) from
+different directories and recursively from every subdirectories (in the future,
+from FTP and HTTP sites) to a printer or to the monitor, in PostScript format
+or in text format.
+
+PDFprint can also help you to print HTML files (or parts of them) from
+different directories and recursively from every subdirectories (in the future,
+from FTP and HTTP sites) to a printer or to the monitor, in PostScript format
+or in text format.
 
 Home: http://www.geocities.com/CapeCanaveral/Lab/3469/pdfprint.html
 

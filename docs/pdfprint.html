@@ -14,7 +14,7 @@ designed by Fabrizio Pivari (Pivari@geocities.com) on 03/08/98-->
 <TABLE WIDTH=100% CELLSPACING=0 CELLPADDING=4 BGCOLOR=silver><TR><TD>
 <FONT SIZE=+3><B>PDFprint</B></FONT>
 </TD></TR></TABLE>
-<H3>Version 2.4 25th April 1998</H3>
+<H3>Version 2.5 10th May 1998</H3>
 <TABLE CELLSPACING=0 CELLPADDING=4><TR>
   <TD VALIGN=top>Programming by</TD>
   <TD>
@@ -33,7 +33,7 @@ designed by Fabrizio Pivari (Pivari@geocities.com) on 03/08/98-->
 </TD></TR></TABLE><BR>
 PDFprint is a very flexible tool to print PDF files (or parts of them) from
 different directories and recursively from every subdirectories (in the future,
-form FTP and HTTP sites) to a printer or to the monitor, in PostScript format
+from FTP and HTTP sites) to a printer or to the monitor, in PostScript format
 or in text format.
 </TD>
 <TD VALIGN=top ALIGN=center>
@@ -44,8 +44,12 @@ or in text format.
 </TABLE>
 PDFprint can also help you to print PostScript files (or parts of them) from
 different directories and recursively from every subdirectories (in the future,
-form FTP and HTTP sites) to a printer or to the monitor, in PostScript format or
-in text format.<P>
+from FTP and HTTP sites) to a printer or to the monitor, in PostScript format or
+in text format.<BR>
+<IMG SRC="new.gif" WIDTH=28 HEIGHT=11> PDFprint can also help you to print
+HTML files (or parts of them) from different directories and recursively from
+every subdirectories (in the future, from FTP and HTTP sites) to a printer or to
+the monitor, in PostScript format or in text format.<P>
 </TD>
 <TABLE WIDTH=100% CELLSPACING=0 CELLPADDING=4 BGCOLOR=silver><TR><TD>
 <FONT SIZE=+1>PDF problems</FONT>
@@ -71,6 +75,16 @@ archive?<BR>
 How can you print every PostScript file in your archive 2-up or 4-up?<BR>
 With PDFprint you can solve these problems.<P>
 <TABLE WIDTH=100% CELLSPACING=0 CELLPADDING=4 BGCOLOR=silver><TR><TD>
+<FONT SIZE=+1>HTML problems</FONT>
+</TD></TR></TABLE><BR>
+How can you print every HTML file in your web 2-up or 4-up?<BR>
+At the moment, if you want to print a HTML file you need a tool that converts it
+in PostScript format (level 3 PostScript printers will accept HTML format
+directly). Usually, the tool is a browser, so you need to visualize the HTML
+file, then the tool converts it in a PostScript file and sends the PostScript
+file to the printer.<BR>
+With PDFprint you can solve these problems.<P>
+<TABLE WIDTH=100% CELLSPACING=0 CELLPADDING=4 BGCOLOR=silver><TR><TD>
 <FONT SIZE=+1>Getting and Installing PDFprint</FONT>
 </TD></TR></TABLE>
 <OL>
@@ -88,6 +102,9 @@ With PDFprint you can solve these problems.<P>
       <A HREF="http://www.adobe.com/prodindex/acrobat">Acrobat Reader</A> or,
       if you have just compiled <A HREF="http://www.cs.wisc.edu/~ghost/">
       Ghostscript 5.xx</A>, you can use <B>pdf2ps</B> script<BR>
+      To use PDFprint with HTML files get HTMLDOC tool:
+      <A HREF="http://www.easysw.com/~mike/htmldoc/">
+      http://www.easysw.com/~mike/htmldoc/</A><BR>
       To manipulate PostScript file, get and compile the psutils software,
       inside you can find <B>psselect</B> and <B>pstops</B> tools:<BR>
       <A HREF="http://www.dcs.ed.ac.uk/home/ajcd/psutils/">
@@ -111,9 +128,10 @@ With PDFprint you can solve these problems.<P>
       With converter you can use <I>pdf2ps</I>, <I>pdftops</I> or
       <I>acroread -toPostScript</I> to convert
       PDF files to PostScript files, <I>pdftotext</I> to convert PDF files
-      to ASCII files.<BR>
+      to ASCII files, <I>HTMLDOC</I> to convert HTML files to PostScript or PDF.
+      <BR>
       You can use <I>psselect</I> or <I>pstops</I> to modify PostScript files
-      to PoscScript files <I>ps2ascii</I> to convert PostScript files to ASCII
+      to PostScript files <I>ps2ascii</I> to convert PostScript files to ASCII
       files.<BR>
       In <I>acroread -toPostScript</I> you can specify to convert to Level 2
       PostScript (default is Level 1 PostScript) with <I>-level2</I> option.<BR>
@@ -127,6 +145,15 @@ With PDFprint you can solve these problems.<P>
       (default is Level 2 PostScript) with <I>-level1</I> option.<BR>
       In <I>pdftotext</I>  you can specify to convert to 7-bit ASCII
       (default is 8-bit ISO Latin-1) with <I>-ascii7</I> option.<BR>
+      In <I>HTMLDOC</I> you can use these options:
+      <UL>
+         <LI><I>-t ps1</I> to force Level 1 PostScript</LI>
+         <LI><I>-t ps2</I> to force Level 2 PostScript</LI>
+         <LI><I>-t pdf</I> to force PDF</LI>
+         <LI><I>--size [sizepage]</I> to specifies the oputput page size.
+         You can use these sizepage: letter, a4, universal, WIDTHxHEIGHT,
+         WIDTHxHEIGHTin, WIDTHxHEIGHTcm, WIDTHxHEIGHTmm</LI>
+      </UL>
       In <I>psselect</I> you can use these options:
       <UL>
          <LI><I>-r</I> output the selected pages in reverse order</LI>
@@ -158,6 +185,7 @@ With PDFprint you can solve these problems.<P>
 <FONT SIZE=+1>Original external tools documentation</FONT>
 </TD></TR></TABLE>
 <UL>
+  <LI><A HREF="http://www.easysw.com/~mike/htmldoc/htmldoc.html">HTMLDOC</A></LI>
   <LI><A HREF="pdftops.html">pdftops</A></LI>
   <LI><A HREF="acroread.html">acroread</A></LI>
   <LI><A HREF="pdf2ps.html">pdf2ps</A></LI>
@@ -195,15 +223,15 @@ example:
 <FONT SIZE=+1>What's new in this version</FONT>
 </TD></TR></TABLE>
 <UL>
-<LI>Added filter variable</LI>
-<LI>Links around the world to PDFprint</LI>
+<LI>Added support for <A HREF="http://www.easysw.com/~mike/htmldoc/">htmldoc</A>
+</LI>
 </UL>
 Here you can find an exhaustive <A HREF="pdfprintH.html">history file</A><P>
 
 <TABLE WIDTH=100% CELLSPACING=0 CELLPADDING=4 BGCOLOR=silver><TR><TD>
 <FONT SIZE=+1>Source</FONT>
 </TD></TR></TABLE>
-<A HREF="PDFprint.tar.gz">Source Code: the last release 2.4</A><BR>
+<A HREF="PDFprint.tar.gz">Source Code: the last release 2.5</A><BR>
 You can also find the source code at
 <A HREF="http://www.perl.org/CPAN/authors/Fabrizio_Pivari">
 CPAN authors/Fabrizio_Pivari/</A><P>
@@ -221,6 +249,8 @@ Emerge PDFzone - Adobe Acrobat-related Shareware & Freeware</A></LI>
 <LI>
 <A HREF="http://www.developer.com/directories/pages/dir.perl.perlutilities.html">
 developer.com Perl:Utilities</A></LI>
+<LI><A HREF="http://www.eklektix.com/lwn/980402/">Linux Weekly News</A></LI>
+<LI><A HREF="http://cgm.cs.mcgill.ca/~luc/postscript.html">Luc Devroye's postscript page</A></LI>
 </UL>
 </BODY>
 </HTML>
