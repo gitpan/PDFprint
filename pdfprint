@@ -3,13 +3,13 @@
 #
 # pdfprint -- a perl script to print PDF files,
 #
-# by ANFACE Software <anface@geocities.com> 11 July 1998
+# by ANFACE Software <anface@geocities.com> 30 August 1998
 #
 # Copy, use, and redistribute freely, but don't take my name off it and
 # clearly mark an altered version.  Fixes and enhancements cheerfully 
 # accepted.
 #
-# This is version 3.0.
+# This is version 3.1.
 #
 use strict;
 use Getopt::Long;
@@ -19,7 +19,7 @@ use Net::FTP;
 use LWP::UserAgent;
 
 
-my $version="3.0";
+my $version="3.1";
 my $configure="pdfprint.cfg";
 my $match="";
 my $recursive="";
@@ -32,9 +32,10 @@ do GetOptions("configure=s" => \$configure,
               "match=s"     => \$match,
               "help"        => \$help,
               "verbose"     => \$verbose) || printusage() ;
-@elem=("tmpdir","YOUR_email","converter","filter","print");
+@elem=("tmpdir","YOUR_email","proxy","converter","filter","print");
 %option=(tmpdir             => '/tmp',
          YOUR_email         => 'yourname@yourhost.com',
+         proxy              => '',
          converter          => 'pdftops',
          filter             => '',
          print              => 'lpr');
@@ -50,6 +51,7 @@ while (<CNF>) {
   foreach $elem (@elem) {if (/ *$elem *: *(.*)/i) {$option{$elem}=$1;}}
   }
 close(CNF);
+($verbose && $option{'proxy'}) and print "I'm using $option{'proxy'} like proxy\n";
 
 sub wanted {
   if ($File::Find::name=~/$match/) {
@@ -86,21 +88,34 @@ WARNING: you are using yourname\@yourhost.com like password for anonymous ftp.
 Change it in the configuration file with your e-mail address!
 EOF
           }
-        $directory.="/";
-        $directory.=join ("/",@URL[1..($#URL-1)]);
-        my $ftp = Net::FTP->new("$URL[$0]");
-        $ftp->login("anonymous",$option{'YOUR_email'});
-        $ftp->cwd("$directory");
-        $ftp->get("$URL[$#URL]");
-        $ftp->quit;
-        $url=$x;
-        $x=$URL[$#URL];
-        $urlfile=1;
+#Funziona! ma come cambiare la password dell'accesso ftp? e la port del proxy?
+# With PROXY
+        if($option{'proxy'}) {
+          my $http = new LWP::UserAgent;
+          $option{'proxy'} and $http-> proxy('ftp' => "$option{'proxy'}");
+          my $req = new HTTP::Request 'GET', "$x";
+          my $res = $http->request($req,"$URL[$#URL]");
+          $url=$x;
+          $x=$URL[$#URL];
+          $urlfile=1;
+          } else {
+          $directory.="/";
+          $directory.=join ("/",@URL[1..($#URL-1)]);
+          my $ftp = Net::FTP->new("$URL[$0]");
+          $ftp->login("anonymous",$option{'YOUR_email'});
+          $ftp->cwd("$directory");
+          $ftp->get("$URL[$#URL]");
+          $ftp->quit;
+          $url=$x;
+          $x=$URL[$#URL];
+          $urlfile=1;
+          }
         }
 # HTTP URL
       if($x =~ /http:\/\/(.*)/) {
         @URL = split (/\//,$1);
         my $http = new LWP::UserAgent;
+        $option{'proxy'} and $http-> proxy('http' => "$option{'proxy'}");
         my $req = new HTTP::Request 'GET', "$x";
         my $res = $http->request($req,"$URL[$#URL]");
         $url=$x;

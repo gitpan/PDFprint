@@ -14,7 +14,7 @@ designed by Fabrizio Pivari (Pivari@geocities.com) on 03/08/98-->
 <TABLE WIDTH=100% CELLSPACING=0 CELLPADDING=4 BGCOLOR=silver><TR><TD>
 <FONT SIZE=+3><B>PDFprint</B></FONT>
 </TD></TR></TABLE>
-<H3>Version 3.0 11th July 1998</H3>
+<H3>Version 3.1 30th August 1998</H3>
 <TABLE CELLSPACING=0 CELLPADDING=4><TR>
   <TD VALIGN=top>Developing by</TD>
   <TD>
@@ -84,8 +84,8 @@ With PDFprint you can solve these problems.<P>
 </TD></TR></TABLE>
 <OL>
   <LI><P>Get the latest Version of PDFprint from:<BR>
-      <A HREF="http://www.geocities.com/CapeCanaveral/Hangar/4794/pdfprint.html">
-      http://www.geocities.com/CapeCanaveral/Hangar/4794/pdfprint.html</A>
+      <A HREF="http://www.geocities.com/CapeCanaveral/Hangar/4794/pdfprint/">
+      http://www.geocities.com/CapeCanaveral/Hangar/4794/pdfprint/</A>
       or CPAN</P>
   </LI>
 
@@ -133,11 +133,14 @@ With PDFprint you can solve these problems.<P>
   <LI>
       <P>Create your personal pdfprint.cfg file.<BR>
       You can change the value of <B>tmpdir</B>, <B>YOUR_email</B>,
-      <B>converter</B>, <B>filter</B> and <B>print</B> variables.<BR>
+      <B>proxy</B>, <B>converter</B>, <B>filter</B> and <B>print</B>
+      variables.<BR>
       With tmpdir you can set the directory for the temporary files.
       You can use relative and absolute path. Default is /tmp.<BR>
       With YOUR_email you have to customize your e-mail address like password
       for anonymous ftp<BR>
+      With proxy You can set your PROXY host in URL mode. e.g.
+      http://your.proxy.com:8080<BR>
       With converter you can use <I>pdf2ps</I>, <I>pdftops</I> or
       <I>acroread -toPostScript</I> to convert
       PDF files to PostScript files, <I>pdftotext</I> to convert PDF files
@@ -241,17 +244,14 @@ example:
 <FONT SIZE=+1>What's new in this version</FONT>
 </TD></TR></TABLE>
 <UL>
-<LI>FTP support with <A HREF="http://www.connect.net/gbarr/libnet">libnet module</A></LI>
-<LI>In configuration file you can customize your e-mail address like password
-for anonymous ftp</LI>
-<LI>HTTP support with <A HREF="http://www.sn.no/libwww-perl/">libwww</A></LI>
+<LI>PROXY support</LI>
 </UL>
 Here you can find an exhaustive <A HREF="pdfprintH.html">history file</A><P>
 
 <TABLE WIDTH=100% CELLSPACING=0 CELLPADDING=4 BGCOLOR=silver><TR><TD>
 <FONT SIZE=+1>Source</FONT>
 </TD></TR></TABLE>
-<A HREF="PDFprint.tar.gz">Source Code: the last release 3.0</A><BR>
+<A HREF="PDFprint.tar.gz">Source Code: the last release 3.1</A><BR>
 <A HREF="PDFprint-2.6.tar.gz">Source Code: the last release without libwww-per
 l-5 and libnet modules 2.6</A><BR>
 You can also find the source code at
@@ -262,18 +262,15 @@ CPAN authors/Fabrizio_Pivari/</A><P>
 <FONT SIZE=+1>Links around the world to PDFprint</FONT></TD></TR></TABLE>
 
 <UL>
+<LI><A HREF="http://emerge.pdfzone.com/">The PDFzone</A></LI>
 <LI><A HREF="http://www.aimnet.com/~derekn/xpdf/">xpdf: a PDF viewer for X</A></LI>
 <LI><A HREF="http://www.cs.wisc.edu/~ghost/">Ghostscript, Ghostview and GSview</A></LI>
-<LI>
-<A HREF="http://emerge.pdfzone.com/products/software/sharewarefreeware.html">
-Emerge PDFzone - Adobe Acrobat-related Shareware & Freeware</A></LI>
 <LI>
 <A HREF="http://www.developer.com/directories/pages/dir.perl.perlutilities.html">
 developer.com Perl:Utilities</A></LI>
 <LI><A HREF="http://www.eklektix.com/lwn/980402/">Linux Weekly News</A></LI>
 <LI><A HREF="http://cgm.cs.mcgill.ca/~luc/postscript.html">Luc Devroye's postscript page</A></LI>
-<LI><A HREF="http://www.regsoft.com">www.RegSoft.com</A>
-<IMG SRC="new.gif" WIDTH=28 HEIGHT=11></LI>
+<LI><A HREF="http://www.regsoft.com">www.RegSoft.com</A></LI>
 </UL>
 </BODY>
 </HTML>
