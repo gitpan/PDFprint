@@ -3,18 +3,18 @@
 #
 # pdfprint -- a perl script to print PDF files,
 #
-# by Fabrizio Pivari <pivari@geocities.com> 10 May 1998
+# by ANFACE Software <anface@geocities.com> 10 May 1998
 #
 # Copy, use, and redistribute freely, but don't take my name off it and
 # clearly mark an altered version.  Fixes and enhancements cheerfully 
 # accepted.
 #
-# This is version 2.5.
+# This is version 2.6.
 #
 use strict;
 use Getopt::Long;
 
-my $version="2.5";
+my $version="2.6";
 my $configure="pdfprint.cfg";
 my $match="";
 my $recursive="";
@@ -79,7 +79,11 @@ if (@ARGV) {
         }
       if ($option{'filter'}) {
         $verbose and print "Using the filter tool $option{'filter'} with $x file\n";
-        system "$option{'filter'} $file $file1";
+        if($option{'filter'}=~/poster/) {
+          system "$option{'filter'} $file > $file1";
+          } else {
+          system "$option{'filter'} $file $file1";
+          }
         } else {rename $file,$file1;}
       $verbose and print "Using the printer tool $option{'print'} with $x file\n";
       system "$option{'print'} $file1";
@@ -113,7 +117,7 @@ example:
 If you want to know more about this tool, you might want
 to read the docs. They came together with pdfprint!
 
-Home: http://www.geocities.com/CapeCanaveral/Lab/3469/pdfprint.html
+Home: http://www.geocities.com/CapeCanaveral/Hangar/4794/pdfprint.html
 
 USAGEDESC
     exit(1);

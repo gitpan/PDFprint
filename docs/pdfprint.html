@@ -14,17 +14,12 @@ designed by Fabrizio Pivari (Pivari@geocities.com) on 03/08/98-->
 <TABLE WIDTH=100% CELLSPACING=0 CELLPADDING=4 BGCOLOR=silver><TR><TD>
 <FONT SIZE=+3><B>PDFprint</B></FONT>
 </TD></TR></TABLE>
-<H3>Version 2.5 10th May 1998</H3>
+<H3>Version 2.6 27th June 1998</H3>
 <TABLE CELLSPACING=0 CELLPADDING=4><TR>
-  <TD VALIGN=top>Programming by</TD>
+  <TD VALIGN=top>Developing by</TD>
   <TD>
-  <A HREF="http://www.geocities.com/CapeCanaveral/Lab/3469/">Fabrizio Pivari</A>
-  <A HREF="mailto:pivari@geocities.com">&lt;pivari@geocities.com&gt;</A>
-  </TD></TR><TR>
-  <TD VALIGN=top>Documentation by</TD>
-  <TD>
-  <A HREF="http://www.geocities.com/CapeCanaveral/Lab/3469/">Fabrizio Pivari</A>
-  <A HREF="mailto:pivari@geocities.com">&lt;pivari@geocities.com&gt;</A>
+  <A HREF="http://www.geocities.com/CapeCanaveral/Hangar/4794/">ANFACE Software</A>
+  <A HREF="mailto:anface@geocities.com">&lt;anface@geocities.com&gt;</A>
   </TD></TR>
 </TABLE>
 
@@ -46,10 +41,10 @@ PDFprint can also help you to print PostScript files (or parts of them) from
 different directories and recursively from every subdirectories (in the future,
 from FTP and HTTP sites) to a printer or to the monitor, in PostScript format or
 in text format.<BR>
-<IMG SRC="new.gif" WIDTH=28 HEIGHT=11> PDFprint can also help you to print
-HTML files (or parts of them) from different directories and recursively from
-every subdirectories (in the future, from FTP and HTTP sites) to a printer or to
-the monitor, in PostScript format or in text format.<P>
+PDFprint can also help you to print HTML files (or parts of them) from different
+directories and recursively from every subdirectories (in the future, from FTP
+and HTTP sites) to a printer or to the monitor, in PostScript format or in text
+format.<P>
 </TD>
 <TABLE WIDTH=100% CELLSPACING=0 CELLPADDING=4 BGCOLOR=silver><TR><TD>
 <FONT SIZE=+1>PDF problems</FONT>
@@ -89,8 +84,8 @@ With PDFprint you can solve these problems.<P>
 </TD></TR></TABLE>
 <OL>
   <LI><P>Get the latest Version of PDFprint from:<BR>
-      <A HREF="http://www.geocities.com/CapeCanaveral/Lab/3469/pdfprint.html">
-      http://www.geocities.com/CapeCanaveral/Lab/3469/pdfprint.html</A>
+      <A HREF="http://www.geocities.com/CapeCanaveral/Hangar/4794/pdfprint.html">
+      http://www.geocities.com/CapeCanaveral/Hangar/4794/pdfprint.html</A>
       or CPAN</P>
   </LI>
 
@@ -108,7 +103,11 @@ With PDFprint you can solve these problems.<P>
       To manipulate PostScript file, get and compile the psutils software,
       inside you can find <B>psselect</B> and <B>pstops</B> tools:<BR>
       <A HREF="http://www.dcs.ed.ac.uk/home/ajcd/psutils/">
-      http://www.dcs.ed.ac.uk/home/ajcd/psutils/</A><BR>
+      http://www.dcs.ed.ac.uk/home/ajcd/psutils/</A>,
+      get and compile the <B>poster</B> software
+      <A HREF="ftp://ftp.es.ele.tue.nl/pub/poster/">
+      ftp://ftp.es.ele.tue.nl/pub/poster/</A><BR>
+      
       If you have just compiled <A HREF="http://www.cs.wisc.edu/~ghost/">
       Ghostscript 5.xx</A>, you can use <B>ps2ascii</B> script</P>
   </LI>
@@ -163,10 +162,13 @@ With PDFprint you can solve these problems.<P>
          form first-last. If first is omitted, the first page is
          assumed, and if last is omitted, the last page is assumed.</LI>
       </UL>
-      With filter you can use <I>pstops</I> to perform a large number of
+      With filter you can use <I>pstops</I> or <I>poster</I>.<BR>
+      With <I>pstops</I> you can perform a large number of
       arbitrary rearrangements of Documents, including arranging for printing
       2-up, 4-up, booklets, reversing, selecting front or back sides of
       documents, scaling, etc.<BR>
+      With <I>poster</I> you can create a large poster by building it
+      from multiple pages and/or printing it on large media.<BR>
       With printer you can use printing commands like <I>lpr</I> and <I>lp</I>
       or monitor commands like <I>more</I> and <I>pg</I>.<BR>
       Every PDF or PostScript file, you have selected, is converted with the
@@ -193,6 +195,7 @@ With PDFprint you can solve these problems.<P>
   <LI><A HREF="psselect.html">psselect</A></LI>
   <LI><A HREF="ps2ascii.html">ps2ascii</A></LI>
   <LI><A HREF="pstops.html">pstops</A></LI>
+  <LI><A HREF="poster.html">poster</A></LI>
 </UL>
 <TABLE WIDTH=100% CELLSPACING=0 CELLPADDING=4 BGCOLOR=silver><TR><TD>
 <FONT SIZE=+1>Syntax</FONT>
@@ -223,7 +226,13 @@ example:
 <FONT SIZE=+1>What's new in this version</FONT>
 </TD></TR></TABLE>
 <UL>
-<LI>Added support for <A HREF="http://www.easysw.com/~mike/htmldoc/">htmldoc</A>
+<LI>Added support for <A HREF="ftp://ftp.es.ele.tue.nl/pub/poster/">poster</A>
+</LI>
+<LI>New official location for PDFprint
+<A HREF="http://www.geocities.com/CapeCanaveral/Hangar/4794/pdfprint.html">
+http://www.geocities.com/CapeCanaveral/Hangar/4794/pdfprint.html</A>
+in the <A HREF="http://www.geocities.com/CapeCanaveral/Hangar/4794/">
+ANFACE Software site</A>.
 </LI>
 </UL>
 Here you can find an exhaustive <A HREF="pdfprintH.html">history file</A><P>
@@ -231,14 +240,13 @@ Here you can find an exhaustive <A HREF="pdfprintH.html">history file</A><P>
 <TABLE WIDTH=100% CELLSPACING=0 CELLPADDING=4 BGCOLOR=silver><TR><TD>
 <FONT SIZE=+1>Source</FONT>
 </TD></TR></TABLE>
-<A HREF="PDFprint.tar.gz">Source Code: the last release 2.5</A><BR>
+<A HREF="PDFprint.tar.gz">Source Code: the last release 2.6</A><BR>
 You can also find the source code at
 <A HREF="http://www.perl.org/CPAN/authors/Fabrizio_Pivari">
 CPAN authors/Fabrizio_Pivari/</A><P>
 
 <TABLE WIDTH=100% CELLSPACING=0 CELLPADDING=4 BGCOLOR=silver><TR><TD>
-<FONT SIZE=+1>Links around the world to PDFprint
-<IMG SRC="new.gif" WIDTH=28 HEIGHT=11></FONT></TD></TR></TABLE>
+<FONT SIZE=+1>Links around the world to PDFprint</FONT></TD></TR></TABLE>
 
 <UL>
 <LI><A HREF="http://www.aimnet.com/~derekn/xpdf/">xpdf: a PDF viewer for X</A></LI>
@@ -251,6 +259,8 @@ Emerge PDFzone - Adobe Acrobat-related Shareware & Freeware</A></LI>
 developer.com Perl:Utilities</A></LI>
 <LI><A HREF="http://www.eklektix.com/lwn/980402/">Linux Weekly News</A></LI>
 <LI><A HREF="http://cgm.cs.mcgill.ca/~luc/postscript.html">Luc Devroye's postscript page</A></LI>
+<LI><A HREF="http://www.regsoft.com">www.RegSoft.com</A>
+<IMG SRC="new.gif" WIDTH=28 HEIGHT=11></LI>
 </UL>
 </BODY>
 </HTML>
