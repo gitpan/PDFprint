@@ -13,21 +13,21 @@ designed by Fabrizio Pivari (Pivari@geocities.com) on 03/08/98-->
 <TR>
 <TD  VALIGN=top ALIGN=left>
 <H2>by <A HREF="mailto:Pivari@geocities.com">Fabrizio Pivari</A></H2>
-<H4>version 1.1 1998/03/15</H4>
+<H4>version 1.2 1998/03/22</H4>
 
 PDFprint is a PERL script to print PDF files, it requires PERL 5.xxx and
 the script pdf2ps of <A HREF="http://www.cs.wisc.edu/~ghost/">Ghostscript 5.xx</A>
 distribution.
-You have to modify these variables, in the pdfprint code, to match your host
-configuration<BR>
+You have to modify these variables, in the configuration file
+(default pdfprint.cfg), to match your host configuration<BR>
 <PRE>
-my $pdf2ps="pdf2ps";
-my $print="lpr";
+pdf2ps : pdf2ps
+print : lpr
 </PRE>
 for example if you prefer absolute path and your print command is lp
 <PRE>
-my $pdf2ps="/usr/local/bin/pdf2ps";
-my $print="/bin/lp";
+pdf2ps : /usr/local/bin/pdf2ps
+print : /bin/lp
 </PRE>
 </TD>
 <TD VALIGN=top ALIGN=center>
@@ -46,24 +46,25 @@ usage:
 where options include:
     -help                        print out this message
     -verbose                     verbose
+    -configure file              default pdfprint.cfg
 
 files:
     with files you can use metacharacters and relative and absolute path name
     
 example:
     pdfprint *.pdf
-    pdfprint -v */*.pdf
+    pdfprint -v -c tests/test.cfg */*.pdf
 </PRE>
 
 <UL>
-What's new with version 1.1:
-<LI>Added a control on file extension: only .pdf and .PDF extensions are accepted</LI>
+What's new with version 1.2:
+<LI>Added configuration file and configure option</LI>
 </UL>
 <A HREF="pdfprintH.html">History file</A><P>
 
 <A HREF="PDFprint.tar.gz">Source Code</A><BR>
 You can also find the source code at
-<A HREF="http://www.perl.org/CPAN/authors/Fabrizio_Pivari">
+<A HREF="http://www.perl.com/CPAN/authors/Fabrizio_Pivari">
 CPAN authors/Fabrizio_Pivari/</A><P>
 
 </BODY>

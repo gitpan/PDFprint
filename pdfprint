@@ -3,43 +3,52 @@
 #
 # pdfprint -- a perl script to print PDF files,
 #
-# by Fabrizio Pivari <pivari@geocities.com> 15 March 1998
+# by Fabrizio Pivari <pivari@geocities.com> 22 March 1998
 #
 # Copy, use, and redistribute freely, but don't take my name off it and
 # clearly mark an altered version.  Fixes and enhancements cheerfully 
 # accepted.
 #
-# This is version 1.1.
+# This is version 1.2.
 #
 use strict;
 use Getopt::Long;
 
-
-# Modify these variables to match your host configuration
-my $pdf2ps="pdf2ps";
-my $print="lpr";
-
-
-my $version="1.1";
+my $version="1.2";
+my $configure="pdfprint.cfg";
 my $verbose="";
 my $help="";
+my @elem; my %option; my $elem="";
 
-do GetOptions("help"        => \$help,
+do GetOptions("configure=s" => \$configure,
+              "help"        => \$help,
               "verbose"     => \$verbose) || printusage() ;
+@elem=("pdf2ps","print");
+%option=(pdf2ps             => 'pdftops',
+         print              => 'lpr');
 
 $help and printusage();
+
+open (CNF, "$configure") || die "pdfprint: couldn't open configuration file $configure\n";
+while (<CNF>) {
+  s/\t/ /g;        #replace tabs by space
+  next if /^ *\#/; #ignore comment lines
+  next if /^ *$/;  #ignore empty lines
+  foreach $elem (@elem) {if (/ *$elem *: *(.*)/i) {$option{$elem}=$1;}}
+  }
+close(CNF);
 
 my @args;
 my $x=""; my $file="";
 if (@ARGV) {
   foreach $x (@ARGV) {
-    if ($x=~/\.pdf$/i {
+    if ($x=~/\.pdf$/i) {
       $file="printpdf$$.ps";
       $verbose and print "Using pdf2ps tool with $x file\n";
-      @args=("$pdf2ps","$x","$file");
+      @args=("$option{'pdf2ps'}","$x","$file");
       system(@args) == 0 or die "system @args failed: $?";
       $verbose and print "Printing the $x file\n";
-      @args=("$print","$file");
+      @args=("$option{'print'}","$file");
       system(@args) == 0 or die "system @args failed: $?";
       unlink $file;
       } else {print "Warning: the extension of the file isn't .pdf or .PDF\n";}
@@ -56,13 +65,14 @@ usage:
 where options include:
     -help                        print out this message
     -verbose                     verbose
+    -configure file              defult pdfprint.cfg
 
 files:
     with files you can use metacharacters and relative and absolute path name
     
 example:
     pdfprint *.pdf
-    pdfprint -v */*.pdf
+    pdfprint -v -c tests/test.cfg */*.pdf
 
 If you want to know more about this tool, you might want
 to read the docs. They came together with pdfprint!

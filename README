@@ -11,13 +11,14 @@ usage:
 where options include:
     -help                        print out this message
     -verbose                     verbose
+    -configure file              defult pdfprint.cfg
 
 files:
     with files you can use metacharacters and relative and absolute path name
     
 example:
     pdfprint *.pdf
-    pdfprint -v */*.pdf
+    pdfprint -v -c tests/test.cfg */*.pdf
 
 If you want to know more about this tool, you might want
 to read the docs. They came together with pdfprint!
