@@ -14,7 +14,7 @@ designed by Fabrizio Pivari (Pivari@geocities.com) on 03/08/98-->
 <TABLE WIDTH=100% CELLSPACING=0 CELLPADDING=4 BGCOLOR=silver><TR><TD>
 <FONT SIZE=+3><B>PDFprint</B></FONT>
 </TD></TR></TABLE>
-<H3>Version 2.3 19th April 1998</H3>
+<H3>Version 2.4 25th April 1998</H3>
 <TABLE CELLSPACING=0 CELLPADDING=4><TR>
   <TD VALIGN=top>Programming by</TD>
   <TD>
@@ -34,18 +34,18 @@ designed by Fabrizio Pivari (Pivari@geocities.com) on 03/08/98-->
 PDFprint is a very flexible tool to print PDF files (or parts of them) from
 different directories and recursively from every subdirectories (in the future,
 form FTP and HTTP sites) to a printer or to the monitor, in PostScript format
-or in text format.<BR>
+or in text format.
 </TD>
 <TD VALIGN=top ALIGN=center>
-	<A HREF="http://www.geocities.com/CapeCanaveral/Hangar/4794/"><IMG SRC="anfacebig.gif" ALT="ANFACE Software" BORDER=0 WIDTH=130 HEIGHT=37></A><BR>
+<A HREF="http://www.geocities.com/CapeCanaveral/Hangar/4794/"><IMG SRC="anfacebig.gif" ALT="ANFACE Software" BORDER=0 WIDTH=130 HEIGHT=37></A><BR>
 <A HREF="http://www.geocities.com/CapeCanaveral/Hangar/4794/"><IMG SRC="anfacelogo.gif" ALT="ANFACE Software logo" BORDER=0 WIDTH=213 HEIGHT=164></A>
 </TD>
 </TR>
 </TABLE>
-<IMG SRC="new.gif" WIDTH=28 HEIGHT=11>PDFprint can also help you to print
-PostScript files (or parts of them) from different directories and recursively
-from every subdirectories (in the future, form FTP and HTTP sites) to a printer
-or to the monitor, in PostScript format or in text format.<P>
+PDFprint can also help you to print PostScript files (or parts of them) from
+different directories and recursively from every subdirectories (in the future,
+form FTP and HTTP sites) to a printer or to the monitor, in PostScript format or
+in text format.<P>
 </TD>
 <TABLE WIDTH=100% CELLSPACING=0 CELLPADDING=4 BGCOLOR=silver><TR><TD>
 <FONT SIZE=+1>PDF problems</FONT>
@@ -54,6 +54,7 @@ How can you print the first page of every PDF file, starting with "a" letter,
 in your archive?<BR>
 How can you read, in ascii mode, the first page of every PDF file in your
 archive?<BR>
+How can you print every PDF file in your archive 2-up or 4-up?<BR>
 At the moment, if you want to print a PDF file you need a tool that converts it
 in PostScript format (level 3 PostScript printers will accept PDF format
 directly). Usually, the tool is a reader, so you need to visualize the PDF file,
@@ -67,6 +68,7 @@ How can you print the first and the fifth pages of every PostScript file
 in your archive?<BR>
 How can you read, in ascii mode, every PostScript file in your
 archive?<BR>
+How can you print every PostScript file in your archive 2-up or 4-up?<BR>
 With PDFprint you can solve these problems.<P>
 <TABLE WIDTH=100% CELLSPACING=0 CELLPADDING=4 BGCOLOR=silver><TR><TD>
 <FONT SIZE=+1>Getting and Installing PDFprint</FONT>
@@ -87,7 +89,7 @@ With PDFprint you can solve these problems.<P>
       if you have just compiled <A HREF="http://www.cs.wisc.edu/~ghost/">
       Ghostscript 5.xx</A>, you can use <B>pdf2ps</B> script<BR>
       To manipulate PostScript file, get and compile the psutils software,
-      inside you can find <B>psselect</B> tools:<BR>
+      inside you can find <B>psselect</B> and <B>pstops</B> tools:<BR>
       <A HREF="http://www.dcs.ed.ac.uk/home/ajcd/psutils/">
       http://www.dcs.ed.ac.uk/home/ajcd/psutils/</A><BR>
       If you have just compiled <A HREF="http://www.cs.wisc.edu/~ghost/">
@@ -102,16 +104,17 @@ With PDFprint you can solve these problems.<P>
   
   <LI>
       <P>Create your personal pdfprint.cfg file.<BR>
-      You can change the value of <B>tmpdir</B>, <B>converter</B> and
-      <B>print</B> variables.<BR>
+      You can change the value of <B>tmpdir</B>, <B>converter</B>, 
+      <B>filter</B> and <B>print</B> variables.<BR>
       With tmpdir you can set the directory for the temporary files.
       You can use relative and absolute path. Default is /tmp.<BR>
       With converter you can use <I>pdf2ps</I>, <I>pdftops</I> or
       <I>acroread -toPostScript</I> to convert
       PDF files to PostScript files, <I>pdftotext</I> to convert PDF files
       to ASCII files.<BR>
-      You can use <I>psselect</I> to modify PostScript files to PoscScript files
-      <I>ps2ascii</I> to convert PostScript files to ASCII files.<BR>
+      You can use <I>psselect</I> or <I>pstops</I> to modify PostScript files
+      to PoscScript files <I>ps2ascii</I> to convert PostScript files to ASCII
+      files.<BR>
       In <I>acroread -toPostScript</I> you can specify to convert to Level 2
       PostScript (default is Level 1 PostScript) with <I>-level2</I> option.<BR>
       In <I>pdftops</I> and <I>pdftotext</I> you can specify the pages to
@@ -133,10 +136,15 @@ With PDFprint you can solve these problems.<P>
          form first-last. If first is omitted, the first page is
          assumed, and if last is omitted, the last page is assumed.</LI>
       </UL>
+      With filter you can use <I>pstops</I> to perform a large number of
+      arbitrary rearrangements of Documents, including arranging for printing
+      2-up, 4-up, booklets, reversing, selecting front or back sides of
+      documents, scaling, etc.<BR>
       With printer you can use printing commands like <I>lpr</I> and <I>lp</I>
-      or monitor commands like <I>more</I> and <I>pg</I>.
+      or monitor commands like <I>more</I> and <I>pg</I>.<BR>
       Every PDF or PostScript file, you have selected, is converted with the
-      selected converter tool, then printed with the selected printer tool.
+      selected converter tool, then filtered with the selected filter tool
+      (default is nothing) and then printed with the selected printer tool.
       </P>
   </LI>
 
@@ -147,8 +155,7 @@ With PDFprint you can solve these problems.<P>
   </LI>
 </OL>
 <TABLE WIDTH=100% CELLSPACING=0 CELLPADDING=4 BGCOLOR=silver><TR><TD>
-<FONT SIZE=+1><IMG SRC="new.gif" WIDTH=28 HEIGHT=11>Original external tools
-documentation</FONT>
+<FONT SIZE=+1>Original external tools documentation</FONT>
 </TD></TR></TABLE>
 <UL>
   <LI><A HREF="pdftops.html">pdftops</A></LI>
@@ -157,6 +164,7 @@ documentation</FONT>
   <LI><A HREF="pdftotext.html">pdftotext</A></LI>
   <LI><A HREF="psselect.html">psselect</A></LI>
   <LI><A HREF="ps2ascii.html">ps2ascii</A></LI>
+  <LI><A HREF="pstops.html">pstops</A></LI>
 </UL>
 <TABLE WIDTH=100% CELLSPACING=0 CELLPADDING=4 BGCOLOR=silver><TR><TD>
 <FONT SIZE=+1>Syntax</FONT>
@@ -187,19 +195,32 @@ example:
 <FONT SIZE=+1>What's new in this version</FONT>
 </TD></TR></TABLE>
 <UL>
-<LI>Added tmpdir variable to set the directory of temporary file (idea of
-<A HREF="mailto:cbb@CONVEX.phazc.uni-heidelberg.de">Christopher Blencowe</A>).
-Default is /tmp</LI>
+<LI>Added filter variable</LI>
+<LI>Links around the world to PDFprint</LI>
 </UL>
 Here you can find an exhaustive <A HREF="pdfprintH.html">history file</A><P>
 
 <TABLE WIDTH=100% CELLSPACING=0 CELLPADDING=4 BGCOLOR=silver><TR><TD>
 <FONT SIZE=+1>Source</FONT>
 </TD></TR></TABLE>
-<A HREF="PDFprint.tar.gz">Source Code: the last release 2.3</A><BR>
+<A HREF="PDFprint.tar.gz">Source Code: the last release 2.4</A><BR>
 You can also find the source code at
 <A HREF="http://www.perl.org/CPAN/authors/Fabrizio_Pivari">
 CPAN authors/Fabrizio_Pivari/</A><P>
 
+<TABLE WIDTH=100% CELLSPACING=0 CELLPADDING=4 BGCOLOR=silver><TR><TD>
+<FONT SIZE=+1>Links around the world to PDFprint
+<IMG SRC="new.gif" WIDTH=28 HEIGHT=11></FONT></TD></TR></TABLE>
+
+<UL>
+<LI><A HREF="http://www.aimnet.com/~derekn/xpdf/">xpdf: a PDF viewer for X</A></LI>
+<LI><A HREF="http://www.cs.wisc.edu/~ghost/">Ghostscript, Ghostview and GSview</A></LI>
+<LI>
+<A HREF="http://emerge.pdfzone.com/products/software/sharewarefreeware.html">
+Emerge PDFzone - Adobe Acrobat-related Shareware & Freeware</A></LI>
+<LI>
+<A HREF="http://www.developer.com/directories/pages/dir.perl.perlutilities.html">
+developer.com Perl:Utilities</A></LI>
+</UL>
 </BODY>
 </HTML>
