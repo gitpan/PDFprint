@@ -1,0 +1,34 @@
+PDFprint is a PERL script to print PDF files
+It requires PERL 5.xxx and the script pdf2ps of Ghostscript 5.xx distribution
+(http://www.cs.wisc.edu/~ghost/).
+
+
+This is the sintax
+
+usage:
+        pdfprint [-options ...] files
+
+where options include:
+    -help                        print out this message
+    -verbose                     verbose
+
+files:
+    with files you can use metacharacters and relative and absolute path name
+    
+example:
+    pdfprint *.pdf
+    pdfprint -v */*.pdf
+
+If you want to know more about this tool, you might want
+to read the docs. They came together with pdfprint!
+
+Home: http://www.geocities.com/CapeCanaveral/Lab/3469/pdfprint.html
+
+Enjoy it!
+
+Send me your suggestions.
+
+Fabrizio Pivari
+mailto:Pivari@hotmail.com
+mailto:Pivari@geocities.com
+Home: http://www.geocities.com/CapeCanaveral/Lab/3469

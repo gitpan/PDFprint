@@ -1,0 +1,72 @@
+#!/usr/local/bin/perl
+# Require Perl5
+#
+# pdfprint -- a perl script to print PDF files,
+#
+# by Fabrizio Pivari <pivari@geocities.com> 1 March 1998
+#
+# Copy, use, and redistribute freely, but don't take my name off it and
+# clearly mark an altered version.  Fixes and enhancements cheerfully 
+# accepted.
+#
+# This is version 1.0.
+#
+use strict;
+use Getopt::Long;
+
+
+# Modify these variables to match your host configuration
+my $pdf2ps="pdf2ps";
+my $print="lpr";
+
+
+my $version="1.0";
+my $verbose="";
+my $help="";
+
+do GetOptions("help"        => \$help,
+              "verbose"     => \$verbose) || printusage() ;
+
+$help and printusage();
+
+my @args;
+my $x=""; my $file="";
+if (@ARGV) {
+  foreach $x (@ARGV) {
+    $file="printpdf$$.ps";
+    $verbose and print "Using pdf2ps tool with $x file\n";
+    @args=("$pdf2ps","$x","$file");
+    system(@args) == 0 or die "system @args failed: $?";
+    $verbose and print "Printing the $x file\n";
+    @args=("$print","$file");
+    system(@args) == 0 or die "system @args failed: $?";
+    unlink $file;
+    }
+  }
+else {printusage();}
+
+sub printusage {
+    print <<USAGEDESC;
+
+usage:
+        pdfprint [-options ...] files
+
+where options include:
+    -help                        print out this message
+    -verbose                     verbose
+
+files:
+    with files you can use metacharacters and relative and absolute path name
+    
+example:
+    pdfprint *.pdf
+    pdfprint -v */*.pdf
+
+If you want to know more about this tool, you might want
+to read the docs. They came together with pdfprint!
+
+Home: http://www.geocities.com/CapeCanaveral/Lab/3469/pdfprint.html
+
+USAGEDESC
+    exit(1);
+}

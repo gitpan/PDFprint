@@ -1,0 +1,64 @@
+<!-- PDFprint: a perl script to print PDF files
+designed by Fabrizio Pivari (Pivari@geocities.com) on 03/08/98-->
+
+<HTML>
+<HEAD>
+<META Name="Author" Content="Fabrizio Pivari">
+<TITLE>PDFprint</TITLE>
+</HEAD>
+
+<BODY BGCOLOR="#ffffff">
+<H1>PDFprint</H1>
+<TABLE>
+<TR>
+<TD  VALIGN=top ALIGN=left>
+<H2>by <A HREF="mailto:Pivari@geocities.com">Fabrizio Pivari</A></H2>
+<H4>version 1.0 1998/03/08</H4>
+
+PDFprint is a PERL script to print PDF files, it requires PERL 5.xxx and
+the script pdf2ps of <A HREF="http://www.cs.wisc.edu/~ghost/">Ghostscript 5.xx</A>
+distribution.
+You have to modify these variables, in the pdfprint code, to match your host
+configuration<BR>
+<PRE>
+my $pdf2ps="pdf2ps";
+my $print="lpr";
+</PRE>
+for example if you prefer absolute path and your print command is lp
+<PRE>
+my $pdf2ps="/usr/local/bin/pdf2ps";
+my $print="/bin/lp";
+</PRE>
+</TD>
+<TD VALIGN=top ALIGN=center>
+<A HREF="http://www.geocities.com/CapeCanaveral/Hangar/4794/"><IMG SRC="anfacebig.gif" BORDER=0 WIDTH=130 HEIGHT=37></A><BR>
+<A HREF="http://www.geocities.com/CapeCanaveral/Hangar/4794/"><IMG SRC="anfacelogo.gif" BORDER=0 WIDTH=213 HEIGHT=164></A>
+</TD>
+</TR>
+</TABLE>
+
+This is the sintax
+
+<PRE>
+usage:
+        pdfprint [-options ...] files
+
+where options include:
+    -help                        print out this message
+    -verbose                     verbose
+
+files:
+    with files you can use metacharacters and relative and absolute path name
+    
+example:
+    pdfprint *.pdf
+    pdfprint -v */*.pdf
+</PRE>
+
+<A HREF="PDFprint.tar.gz">Source Code</A><BR>
+You can also find the source code at
+<A HREF="http://www.perl.org/CPAN/authors/Fabrizio_Pivari">
+CPAN authors/Fabrizio_Pivari/</A><P>
+
+</BODY>
+</HTML>
